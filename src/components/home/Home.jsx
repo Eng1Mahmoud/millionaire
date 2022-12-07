@@ -59,11 +59,7 @@ function Home() {
       navigat("/register");
     }
   }, [logdin, navigat]);
-  useEffect(() => {
-    if (numberQ === 1) {
-      plays(); // play audio
-    }
-  }, [plays, numberQ]);
+
   useEffect(() => {
     // fetch qustion active from api
     const fetch = async () => {
