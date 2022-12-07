@@ -1,0 +1,238 @@
+body,
+*,
+html {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    overflow-y: hidden;
+}
+// register and login 
+
+
+.register,
+.login {
+    background-color: rgb(11 138 96 / 71%);
+    width: 100%;
+    height: 100vh;
+
+    .container {
+        .content {
+
+            .img {
+
+                .img1 {
+                    position: relative;
+                    left: 15px;
+                    bottom: 0px;
+                    z-index: 3;
+                    height: 350px;
+                }
+
+                .img2 {
+                    height: 200px;
+                    position: relative;
+                    left: -70px;
+                    bottom: 0px;
+                    z-index: 1;
+
+                }
+            }
+
+            .form {
+                background-color: white;
+                height: 100%;
+                z-index: 2;
+                box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.719);
+                padding: 60px;
+                padding-top: 40px;
+                padding-bottom: 40px;
+
+                form {
+                    .group {
+
+                        padding-top: 10px;
+                        padding-bottom: 5px;
+                        border-bottom: 1px solid darkcyan;
+                        width: 100%;
+                        margin-bottom: 15px;
+
+                        input {
+                            padding-left: 10px;
+                            width: 90%;
+                            border: none;
+                            outline: none;
+
+                            &::placeholder {
+                                text-transform: capitalize;
+                            }
+
+                        }
+
+                        label {
+                            color: darkcyan;
+
+                            .file {
+                                font-size: 30px;
+
+                            }
+
+                        }
+
+                        .icon {
+                            width: 10%;
+                            color: darkcyan;
+                        }
+                    }
+
+                    .validation-error {
+                        color: red;
+                        text-transform: capitalize;
+                        font-weight: bold;
+                    }
+
+                    button {
+                        border: none;
+                        outline: none;
+                        color: white;
+                        background-color: darkcyan;
+                    }
+
+                    .create-or-login {
+                        padding-top: 15px;
+                        display: block;
+                        color: darkcyan;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+// end register and login 
+
+.Home {
+
+    background: linear-gradient(90deg, rgba(9, 9, 121, 0.835171568627451) 44%, rgba(0, 212, 255, .2) 100%), url("../images/bg.jpg");
+    background-position: center;
+    background-size: cover;
+    color: white;
+    height: 100vh;
+
+    header {
+        position: absolute;
+        top: 20px;
+        left: 0px;
+        width: 100%;
+
+        .scores,
+        .time {
+            background-color: rgba(0, 212, 255, .5);
+            width: 60px;
+            height: 60px;
+            font-weight: bold;
+            font-size: 14px;
+            
+        }
+    }
+
+    .questions {
+
+        .question {
+            background-color: #084298e8;
+            outline: 5px solid  rgba(0, 212, 255, .5);
+            box-shadow: 0px 0px 3px 0px solid  rgba(0, 212, 255, .5);
+        }
+
+        .answers {
+            .answer {
+                .ans {
+                    background-color: #084298e8;
+                    cursor: pointer;
+                    border: 5px solid  rgba(0, 212, 255, .3);
+                    border-top:none;
+                    transition:all .5s linear;
+                    -webkit-transition:all .5s linear;
+                    -moz-transition:all .5s linear;
+                    -ms-transition:all .5s linear;
+                    -o-transition:all .5s linear;
+         &:hover{
+                        border-color: rgba(0, 212, 255, .6);
+                    }
+                }
+
+                .corect {
+                    background-color: green;
+                    animation: corectAnimation 1s linear 2;
+                    -webkit-animation: corectAnimation 1s linear 2;
+                    transition: .4s linear;
+                    -webkit-transition: .4s linear;
+                    -moz-transition: .4s linear;
+                    -ms-transition: .4s linear;
+                    -o-transition: .4s linear;
+}
+
+                .not-corect {
+                    background-color: red;
+                    animation: not-corectAnimation 1s linear 2;
+                    -webkit-animation: not-corectAnimation 1s linear 2;
+                    transition: .4s linear;
+                    -webkit-transition: .4s linear;
+                    -moz-transition: .4s linear;
+                    -ms-transition: .4s linear;
+                    -o-transition: .4s linear;
+                }
+            }
+        }
+
+    }
+
+    .score {
+        color:darkcyan;
+        .card{
+           
+            box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.719);
+            button{
+                border:none;
+                color:darkcyan;
+                border-bottom: 3px solid darkcyan;
+                border-right: 3px solid darkcyan;
+            }
+            img{
+                height:180px !important;
+                
+            }
+        }
+       
+    }
+}
+
+
+
+
+@keyframes corectAnimation {
+    0% {
+        background-color: #084298e8;
+    }
+
+    100% {
+        background-color: green;
+    }
+}
+
+
+
+
+@keyframes not-corectAnimation {
+    0% {
+        background-color: #084298e8;
+    }
+
+    100% {
+        background-color: red;
+    }
+}
