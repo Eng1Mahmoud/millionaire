@@ -69,7 +69,7 @@ function Home() {
     const fetch = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/question?id=${numberQ}`
+          `https://millionaires.glitch.me/question?id=${numberQ}`
         );
         setData(res.data[0]);
       } catch (error) {}

@@ -51,7 +51,7 @@ function Forms() {
 
     axios
     .get(
-      `http://localhost:4000/user?email=${values.email}`
+      `https://millionaires.glitch.me/user?email=${values.email}`
     )
     .then((res) => {
       console.log(res.data);
@@ -61,7 +61,7 @@ function Forms() {
       }
       else{
         axios
-        .post("http://localhost:4000/user", values)
+        .post("https://millionaires.glitch.me/user", values)
         .then((res) => console.log("good"))
         .catch((err) => console.log(err));
         navigat("/login")
