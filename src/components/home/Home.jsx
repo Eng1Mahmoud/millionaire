@@ -59,7 +59,11 @@ function Home() {
       navigat("/register");
     }
   }, [logdin, navigat]);
-
+  useEffect(() => {
+   
+      plays(); // play audio
+    
+  }, [plays]);
   useEffect(() => {
     // fetch qustion active from api
     const fetch = async () => {
