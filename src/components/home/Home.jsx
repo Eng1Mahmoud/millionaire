@@ -123,9 +123,9 @@ function Home() {
                 </div>
               </div>
             </header>
-            <div className="questions text-center  px-0 px-md-2 py-5 mt-5">
-              <div className="question p-2 rounded-2 mb-4 mt-2 fw-bold">
-                <h3 className="fw-bold">{data.question}</h3>
+            <div className="questions text-center  px-0 px-md-2 py-5 mt-5 w-100">
+              <div className="question p-1 rounded-2 mb-4  ">
+                <h3 className="fw-bolder p-2">{data.question}</h3>
               </div>
 
               <div className="answers ">
@@ -144,7 +144,7 @@ function Home() {
                                 data.score
                               )
                             }>
-                            <div className="ans p-4 rounded-2 fw-bold">{ans}</div>
+                            <div className="ans p-2 rounded-2 fw-bold">{ans}</div>
                           </div>
                         );
                       })

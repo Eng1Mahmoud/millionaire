@@ -5,9 +5,11 @@ html {
     padding: 0px;
     box-sizing: border-box;
 }
-body{
+
+body {
     overflow-y: hidden;
 }
+
 // register and login 
 
 
@@ -136,7 +138,7 @@ body{
             height: 60px;
             font-weight: bold;
             font-size: 14px;
-            
+
         }
     }
 
@@ -144,8 +146,9 @@ body{
 
         .question {
             background-color: #084298e8;
-            outline: 5px solid  rgba(0, 212, 255, .5);
-            box-shadow: 0px 0px 3px 0px solid  rgba(0, 212, 255, .5);
+            outline: 5px solid rgba(0, 212, 255, .5);
+            box-shadow: 0px 0px 3px 0px solid rgba(0, 212, 255, .5);
+            font-size: 35px;
         }
 
         .answers {
@@ -153,14 +156,16 @@ body{
                 .ans {
                     background-color: #084298e8;
                     cursor: pointer;
-                    border: 5px solid  rgba(0, 212, 255, .3);
-                    border-top:none;
-                    transition:all .5s linear;
-                    -webkit-transition:all .5s linear;
-                    -moz-transition:all .5s linear;
-                    -ms-transition:all .5s linear;
-                    -o-transition:all .5s linear;
-         &:hover{
+                    border: 5px solid rgba(0, 212, 255, .3);
+                    border-top: none;
+                    transition: all .5s linear;
+                    -webkit-transition: all .5s linear;
+                    -moz-transition: all .5s linear;
+                    -ms-transition: all .5s linear;
+                    -o-transition: all .5s linear;
+                    font-size: 25px;
+
+                    &:hover {
                         border-color: rgba(0, 212, 255, .6);
                     }
                 }
@@ -174,7 +179,7 @@ body{
                     -moz-transition: .4s linear;
                     -ms-transition: .4s linear;
                     -o-transition: .4s linear;
-}
+                }
 
                 .not-corect {
                     background-color: red;
@@ -192,22 +197,25 @@ body{
     }
 
     .score {
-        color:darkcyan;
-        .card{
-           
+        color: darkcyan;
+
+        .card {
+
             box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.719);
-            button{
-                border:none;
-                color:darkcyan;
+
+            button {
+                border: none;
+                color: darkcyan;
                 border-bottom: 3px solid darkcyan;
                 border-right: 3px solid darkcyan;
             }
-            img{
-                height:180px !important;
-                
+
+            img {
+                height: 180px !important;
+
             }
         }
-       
+
     }
 }
 
