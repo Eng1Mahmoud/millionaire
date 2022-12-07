@@ -7,6 +7,7 @@ import { setError } from "../../redux/acticeUser";
 import play from "../../dist/sound/src_sounds_play.mp3";
 import corect from "../../dist/sound/src_sounds_correct.mp3";
 import wrowng from "../../dist/sound/src_sounds_wrong.mp3";
+import wait from '../../dist/sound/src_sounds_wait.mp3'
 import useSound from "use-sound";
 function Home() {
   const [data, setData] = useState({}); // data store qustion that active
@@ -20,6 +21,7 @@ function Home() {
   const [plays] = useSound(play);
   const [wrowngs] = useSound(wrowng);
   const [corects] = useSound(corect);
+  const [wites] = useSound(wait)
 
   //  this function check corect answer or note
   const check = (e, ans, corectAnswer, scores) => {
@@ -60,10 +62,13 @@ function Home() {
     }
   }, [logdin, navigat]);
   useEffect(() => {
-   
       plays(); // play audio
-    
-  }, [plays]);
+  }, []);
+  useEffect(() => {
+    if(time < 15){
+      wites()  // play wites
+    }
+}, [time]);
   useEffect(() => {
     // fetch qustion active from api
     const fetch = async () => {
@@ -105,8 +110,7 @@ function Home() {
   useEffect(() => {
     // reset timer if user chose answer not corect
     setTime(30);
-    wrowngs(); // play wrowng sound
-  }, [error, wrowngs]);
+  }, [error]);
 
   return (
     <div className="Home  py-5">
