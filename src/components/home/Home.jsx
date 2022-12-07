@@ -63,12 +63,13 @@ function Home() {
   }, [logdin, navigat]);
   useEffect(() => {
       plays(); // play audio
-  }, []);
+
+  }, [plays]);
   useEffect(() => {
     if(time < 15){
       wites()  // play wites
     }
-}, [time]);
+}, [time, wites]);
   useEffect(() => {
     // fetch qustion active from api
     const fetch = async () => {
