@@ -33,16 +33,17 @@ function Home() {
 
       setTimeout(() => {
         e.target.classList.remove("corect"); //  // remov class correct to corect answer after 1.5 second
+        if (numberQ < 12) {
+          // update number qustion
+          setNumberQ((prev) => ++prev);
+        } else {
+          dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
+          sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
+          setScore(0); // rest score
+        }
       }, 7000);
 
-      if (numberQ < 12) {
-        // update number qustion
-        setNumberQ((prev) => ++prev);
-      } else {
-        dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
-        sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
-        setScore(0); // rest score
-      }
+      
     } else {
       // if answer not corect this block will be executed
       e.target.classList.add("not-corect");
@@ -68,11 +69,7 @@ function Home() {
       plays();
     }
   }, [error, plays]);
-  useEffect(() => {
-    if ((time < 15) && (time > 0)) {
-      wites(); // play wites
-    }
-  }, [time, wites]);
+
   useEffect(() => {
     // fetch qustion active from api
     const fetch = async () => {
