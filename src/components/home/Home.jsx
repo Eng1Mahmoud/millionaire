@@ -7,7 +7,7 @@ import { setError } from "../../redux/acticeUser";
 import play from "../../dist/sound/src_sounds_play.mp3";
 import corect from "../../dist/sound/src_sounds_correct.mp3";
 import wrowng from "../../dist/sound/src_sounds_wrong.mp3";
-import wait from '../../dist/sound/src_sounds_wait.mp3'
+import wait from "../../dist/sound/src_sounds_wait.mp3";
 import useSound from "use-sound";
 function Home() {
   const [data, setData] = useState({}); // data store qustion that active
@@ -21,7 +21,7 @@ function Home() {
   const [plays] = useSound(play);
   const [wrowngs] = useSound(wrowng);
   const [corects] = useSound(corect);
-  const [wites] = useSound(wait)
+  const [wites] = useSound(wait);
 
   //  this function check corect answer or note
   const check = (e, ans, corectAnswer, scores) => {
@@ -62,14 +62,16 @@ function Home() {
     }
   }, [logdin, navigat]);
   useEffect(() => {
-      plays(); // play audio
-
-  }, [plays]);
-  useEffect(() => {
-    if(time < 15){
-      wites()  // play wites
+    // play audio
+    if (!error) {
+      plays();
     }
-}, [time, wites]);
+  }, [error, plays]);
+  useEffect(() => {
+    if ((time < 15) & (time > 0)) {
+      wites(); // play wites
+    }
+  }, [time, wites]);
   useEffect(() => {
     // fetch qustion active from api
     const fetch = async () => {
@@ -149,7 +151,9 @@ function Home() {
                                 data.score
                               )
                             }>
-                            <div className="ans p-2 rounded-2 fw-bold">{ans}</div>
+                            <div className="ans p-2 rounded-2 fw-bold">
+                              {ans}
+                            </div>
                           </div>
                         );
                       })
