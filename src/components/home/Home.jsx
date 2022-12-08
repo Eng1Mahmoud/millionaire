@@ -13,7 +13,7 @@ function Home() {
   const [data, setData] = useState({}); // data store qustion that active
   const [numberQ, setNumberQ] = useState(1); // store number qustion
   const [score, setScore] = useState(0); // store score user
-  const [time, setTime] = useState(30); // store time qustion
+  const [time, setTime] = useState(60); // store time qustion
   const error = useSelector((state) => state.ActiveUserSlice.error); // get error status from redux
   const logdin = useSelector((state) => state.ActiveUserSlice.logdin); // get logdin status from redux
   const navigat = useNavigate();
@@ -107,17 +107,15 @@ function Home() {
 
   useEffect(() => {
     // rest timer if numberQ change
-    setTime(30);
+    setTime(60);
   }, [numberQ]);
   useEffect(() => {
     // fire dispatch error if timer become < 0
     if (time <= 0) {
       dispatch(setError(true));
       wrowngs();
-      if (error) {
-        stop();
-      }
       setTime(30);
+      setNumberQ(1);
       sessionStorage.setItem("score", score);
       setScore(0);
     }
@@ -125,7 +123,7 @@ function Home() {
   // this efect restart time
   useEffect(() => {
     // reset timer if user chose answer not corect
-    setTime(30);
+    setTime(60);
   }, [error]);
 
   return (
