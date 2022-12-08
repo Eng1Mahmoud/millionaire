@@ -22,6 +22,8 @@ function Home() {
   const [wrowngs, { stop }] = useSound(wrowng);
   const [corects] = useSound(corect);
 
+
+
   //  this function check corect answer or note
   const check = (e, ans, corectAnswer, scores) => {
     // ans is answer that user select
@@ -29,18 +31,31 @@ function Home() {
       e.target.classList.add("corect"); // add class correct to corect answer
       corects(); // play correct
       setScore((preve) => preve + scores); // update score
-      if (numberQ < 12) {
-        // update number qustion
-        setNumberQ((prev) => ++prev);
-      } else {
-        dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
-        sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
-        setScore(0); // rest score
-      }
-      setTimeout(() => {
+      if (time <= 6) {
         e.target.classList.remove("corect"); //  // remov class correct to corect answer after 1.5 second
-      }, 7000);
-    } else {
+        if (numberQ < 12) {
+          // update number qustion
+          setNumberQ((prev) => ++prev);
+        } else {
+          dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
+          sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
+          setScore(0); // rest score
+        }
+      } else {
+        setTimeout(() => {
+          e.target.classList.remove("corect"); //  // remov class correct to corect answer after 1.5 second
+          if (numberQ < 12) {
+            // update number qustion
+            setNumberQ((prev) => ++prev);
+          } else {
+            dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
+            sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
+            setScore(0); // rest score
+          }
+        }, 5000);
+      }
+    } 
+    else {
       // if answer not corect this block will be executed
       e.target.classList.add("not-corect");
       wrowngs(); // play wrong
@@ -50,7 +65,7 @@ function Home() {
         e.target.classList.remove("not-corect");
         dispatch(setError(true));
         setNumberQ(1);
-      }, 7000);
+      }, 5000);
     }
   };
 
@@ -59,6 +74,7 @@ function Home() {
       navigat("/register");
     }
   }, [logdin, navigat]);
+
   useEffect(() => {
     // play audio
     if (!error) {
