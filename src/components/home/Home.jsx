@@ -114,6 +114,9 @@ function Home() {
     if (time <= 0) {
       dispatch(setError(true));
       wrowngs();
+      if(error){
+        stop()
+      }
       setTime(30);
       setNumberQ(1);
       sessionStorage.setItem("score", score);
