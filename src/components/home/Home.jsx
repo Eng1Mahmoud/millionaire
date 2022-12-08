@@ -52,7 +52,7 @@ function Home() {
             sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
             setScore(0); // rest score
           }
-        }, 5000);
+        }, 7000);
       }
     } 
     else {
@@ -65,7 +65,7 @@ function Home() {
         e.target.classList.remove("not-corect");
         dispatch(setError(true));
         setNumberQ(1);
-      }, 5000);
+      }, 7000);
     }
   };
 
