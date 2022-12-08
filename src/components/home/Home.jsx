@@ -19,9 +19,8 @@ function Home() {
   const navigat = useNavigate();
   const dispatch = useDispatch();
   const [plays] = useSound(play);
-  const [wrowngs] = useSound(wrowng);
+  const [wrowngs, { stop }] = useSound(wrowng);
   const [corects] = useSound(corect);
-
 
   //  this function check corect answer or note
   const check = (e, ans, corectAnswer, scores) => {
@@ -30,20 +29,17 @@ function Home() {
       e.target.classList.add("corect"); // add class correct to corect answer
       corects(); // play correct
       setScore((preve) => preve + scores); // update score
-
+      if (numberQ < 12) {
+        // update number qustion
+        setNumberQ((prev) => ++prev);
+      } else {
+        dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
+        sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
+        setScore(0); // rest score
+      }
       setTimeout(() => {
         e.target.classList.remove("corect"); //  // remov class correct to corect answer after 1.5 second
-        if (numberQ < 12) {
-          // update number qustion
-          setNumberQ((prev) => ++prev);
-        } else {
-          dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
-          sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
-          setScore(0); // rest score
-        }
       }, 7000);
-
-      
     } else {
       // if answer not corect this block will be executed
       e.target.classList.add("not-corect");
@@ -102,11 +98,14 @@ function Home() {
     if (time <= 0) {
       dispatch(setError(true));
       wrowngs();
+      if (error) {
+        stop();
+      }
       setTime(30);
       sessionStorage.setItem("score", score);
       setScore(0);
     }
-  }, [dispatch, score, time, wrowngs]);
+  }, [dispatch, error, score, stop, time, wrowngs]);
   // this efect restart time
   useEffect(() => {
     // reset timer if user chose answer not corect
