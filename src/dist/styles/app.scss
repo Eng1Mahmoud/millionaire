@@ -191,6 +191,9 @@ body {
                     -ms-transition: .4s linear;
                     -o-transition: .4s linear;
                 }
+                .disabled{
+                    user-select: none;
+                }
             }
         }
 

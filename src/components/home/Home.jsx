@@ -20,29 +20,22 @@ function Home() {
   const dispatch = useDispatch();
   const [plays] = useSound(play);
   const [wrowngs, { stop }] = useSound(wrowng);
+  const [selected, setSelected] = useState(false);
   const [corects] = useSound(corect);
-
-
 
   //  this function check corect answer or note
   const check = (e, ans, corectAnswer, scores) => {
-    // ans is answer that user select
-    if (ans === corectAnswer) {
-      e.target.classList.add("corect"); // add class correct to corect answer
-      corects(); // play correct
-      setScore((preve) => preve + scores); // update score
-      if (time <= 6) {
-        e.target.classList.remove("corect"); //  // remov class correct to corect answer after 1.5 second
-        if (numberQ < 12) {
-          // update number qustion
-          setNumberQ((prev) => ++prev);
-        } else {
-          dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
-          sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
-          setScore(0); // rest score
-        }
-      } else {
-        setTimeout(() => {
+    if (!selected) {
+      // executed code if user note click in any answer before if user click in answer note executeed
+      setSelected(true); // make selected true becouse user chose answer
+      // ans is answer that user select
+      if (ans === corectAnswer) {
+        e.target.classList.add("corect"); // add class correct to corect answer
+        corects(); // play correct
+        setScore((preve) => preve + scores); // update score
+
+        if (time <= 6) {
+          // if time < 6s will chang qustion if corect directly with out wite
           e.target.classList.remove("corect"); //  // remov class correct to corect answer after 1.5 second
           if (numberQ < 12) {
             // update number qustion
@@ -52,20 +45,34 @@ function Home() {
             sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
             setScore(0); // rest score
           }
+        } else {
+          //if time > 6s will chang qustion if corect after 7s
+          setTimeout(() => {
+            setSelected(false);
+            e.target.classList.remove("corect"); //  // remov class correct to corect answer after 1.5 second
+            if (numberQ < 12) {
+              // update number qustion
+              setNumberQ((prev) => ++prev);
+            } else {
+              dispatch(setError(true)); // if numberQ >12 this statement will be executed to go score page
+              sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
+              setScore(0); // rest score
+            }
+          }, 7000);
+        }
+      } else {
+        // if answer not corect this block will be executed
+        e.target.classList.add("not-corect");
+        wrowngs(); // play wrong
+        sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
+        setScore(0); // rest score
+        setTimeout(() => {
+          setSelected(false);
+          e.target.classList.remove("not-corect");
+          dispatch(setError(true));
+          setNumberQ(1);
         }, 7000);
       }
-    } 
-    else {
-      // if answer not corect this block will be executed
-      e.target.classList.add("not-corect");
-      wrowngs(); // play wrong
-      sessionStorage.setItem("score", score); // store score to setionStorage to use it in score page
-      setScore(0); // rest score
-      setTimeout(() => {
-        e.target.classList.remove("not-corect");
-        dispatch(setError(true));
-        setNumberQ(1);
-      }, 7000);
     }
   };
 
@@ -114,8 +121,8 @@ function Home() {
     if (time <= 0) {
       dispatch(setError(true));
       wrowngs();
-      if(error){
-        stop()
+      if (error) {
+        stop();
       }
       setTime(30);
       setNumberQ(1);
