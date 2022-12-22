@@ -32,7 +32,7 @@ function Forms() {
     onSubmitProps.resetForm(true);
     axios
       .get(
-        `https://millionaires.glitch.me/user?email=${values.email}&password=${values.password}`
+        `https://millionaires1.glitch.me/user?email=${values.email}&password=${values.password}`
       )
       .then((res) => {
         if (res.data.length > 0) {

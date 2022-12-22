@@ -94,7 +94,7 @@ function Home() {
     const fetch = async () => {
       try {
         const res = await axios.get(
-          `https://millionaires.glitch.me/question?id=${numberQ}`
+          `https://millionaires1.glitch.me/question?id=${numberQ}`
         );
         setData(res.data[0]);
       } catch (error) {}
