@@ -13,7 +13,7 @@ function Score() {
     const fetch = async () => {
       try {
         const res = await axios.get(
-          `https://millionaires.glitch.me/user?id=${activeUser ? activeUser : id}`
+          `https://millionaires1.glitch.me/user?id=${activeUser ? activeUser : id}`
         );
        
         setUser(res.data[0]);
